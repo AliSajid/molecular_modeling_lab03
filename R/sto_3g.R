@@ -1,5 +1,22 @@
 # Function to generate STO-3G type orbitals
 
+#' Function to generate STO-3G type orbital functions
+#'
+#' #' Function to generate Slater-Type Orbital Functions
+#'
+#'This function takes in the name of an element and a basiss et and generates a function that can return the energy at that radius.
+#
+#'
+#' @param basis
+#' @param element
+#'
+#' @importFrom purrr map_dbl map2_dbl reduce
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' TRUE
 sto_3g_generator <- function(basis, element) {
 
   basis_data <- load_basis_set(basis, element)
