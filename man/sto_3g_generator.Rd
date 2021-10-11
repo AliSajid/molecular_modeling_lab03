@@ -7,7 +7,9 @@
 sto_3g_generator(basis, element)
 }
 \arguments{
-\item{element}{}
+\item{basis}{The basis set}
+
+\item{element}{The name or symbol of the element}
 }
 \value{
 

@@ -7,11 +7,16 @@
 load_basis_set(basis, element)
 }
 \arguments{
-\item{element}{}
+\item{basis}{The basis set to use}
+
+\item{element}{The name or the symbol of the element}
 }
 \value{
 
 }
 \description{
 This function takes a name of an element and returns its basis set.
+}
+\examples{
+TRUE
 }

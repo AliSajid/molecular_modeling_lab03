@@ -4,20 +4,21 @@
 #'
 #' This function takes a name of an element and returns its basis set.
 #'
-#' @param basis
-#' @param element
+#' @param basis The basis set to use
+#' @param element The name or the symbol of the element
 #'
 #' @importFrom httr GET status_code
 #' @importFrom stringr str_to_lower str_glue
 #' @importFrom jsonlite fromJSON
 #' @importFrom purrr map pluck
-#' @importFrom tidyr unnesst_wieder, pivot_longer separate
+#' @importFrom tidyr unnest_wider pivot_longer separate
 #' @importFrom dplyr mutate
 #'
 #' @return
 #' @export
 #'
 #' @examples
+#' TRUE
 load_basis_set <- function(basis, element) {
   atomicNumber <- periodic_table |>
     dplyr::filter(

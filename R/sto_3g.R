@@ -7,8 +7,8 @@
 #'This function takes in the name of an element and a basiss et and generates a function that can return the energy at that radius.
 #
 #'
-#' @param basis
-#' @param element
+#' @param basis The basis set
+#' @param element The name or symbol of the element
 #'
 #' @importFrom purrr map_dbl map2_dbl reduce
 #'

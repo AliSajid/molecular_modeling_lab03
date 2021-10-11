@@ -2,7 +2,7 @@
 
 #' Function to generate Slater-Type Orbital Functions
 #'
-#' This function takes in a constatne "zeta" and returns a function that takes
+#' This function takes in a constant "zeta" and returns a function that takes
 #' in the radius and gives you the energy at that radius.
 #'
 #' @param zeta a numeric
