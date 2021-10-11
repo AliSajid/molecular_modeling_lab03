@@ -2,3 +2,4 @@
 ^renv\.lock$
 ^molecular_modeling_lab03\.Rproj$
 ^\.Rproj\.user$
+^data-raw$
