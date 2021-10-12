@@ -1,0 +1,111 @@
+---
+title: "lab_report_3"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{lab_report_3}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(molecular_modeling_lab03)
+library(tidyverse)
+```
+
+In this lab, we will compare the value of teh orbitals at different radii across three different conditions.
+
+```{r function_generation}
+sto_h <- sto_generator(1.24)
+gto_h <- gto_generator(0.4166)
+sto_2g_h <- sto_2g_generator(element = "hydrogen")
+sto_3g_h <- sto_3g_generator(element = "hydrogen")
+sto_4g_h <- sto_4g_generator(element = "hydrogen")
+sto_5g_h <- sto_5g_generator(element = "hydrogen")
+sto_6g_h <- sto_6g_generator(element = "hydrogen")
+```
+
+Now we run the analysis.
+
+```{r analysis}
+df <- tibble(radius = seq(0, 6, 0.01)) |> 
+  mutate(STO = map_dbl(radius, sto_h),
+         GTO = map_dbl(radius, gto_h),
+         `STO-2G` = map_dbl(radius, sto_2g_h),
+         `STO-3G` = map_dbl(radius, sto_3g_h),
+         `STO-4G` = map_dbl(radius, sto_4g_h),
+         `STO-5G` = map_dbl(radius, sto_5g_h),
+         `STO-6G` = map_dbl(radius, sto_6g_h)) |> 
+  pivot_longer(cols = c(starts_with("STO"), GTO), names_to = "type") |> 
+  write_csv("vignettes/dataset.csv")
+```
+
+Now we make the figures.
+
+```{r figures}
+g <- ggplot(df, aes(x = radius, y = value, color = type, group = type))
+
+p_base <- g + geom_line(size = 1.2) +
+  theme_minimal() +
+  scale_x_continuous(breaks = seq(0, 6, 0.5)) +
+  scale_y_continuous(breaks = seq(0, 0.8, 0.1))
+```
+
+Comparing just the STO and GTO
+
+```{r}
+p1 <- p_base +
+  scale_color_brewer(palette = "Dark2", name = "Basis Set", limit = c("STO", "GTO"))
+```
+
+Comparing STO with GTO and STO-3G
+
+```{r}
+p2 <- p_base +
+  scale_color_brewer(palette = "Dark2", name = "Basis Set", limit = c("STO", "GTO", "STO-3G"))
+```
+
+Comparing STO with GTO and STO-2G
+
+```{r}
+p3 <- p_base +
+  scale_color_brewer(palette = "Dark2", name = "Basis Set", limit = c("STO", "GTO", "STO-2G"))
+```
+
+Comparing STO with GTO and STO-4G
+
+```{r}
+p4 <- p_base +
+  scale_color_brewer(palette = "Dark2", name = "Basis Set", limit = c("STO", "GTO", "STO-4G"))
+```
+
+Comparing STO with GTO and STO-5G
+
+```{r}
+p5 <- p_base +
+  scale_color_brewer(palette = "Dark2", name = "Basis Set", limit = c("STO", "GTO", "STO-5G"))
+```
+
+Comparing STO with GTO and STO-6G
+
+```{r}
+p6 <- p_base +
+  scale_color_brewer(palette = "Dark2", name = "Basis Set", limit = c("STO", "GTO", "STO-6G"))
+```
+
+Saving all figures.
+
+```{r}
+figs <- list(p1, p2, p3, p4, p5, p6)
+
+labels <- list("Simple", "STO-3G", "STO-2G", "STO-4G", "STO-5G", "STO-6G")
+
+walk2(figs, labels, ~ ggsave(str_glue("{.y}-Figure.png"), plot = .x, path = "vignettes/figs", width = 11, height = 8, units = "in", bg = "white"))
+```
+
