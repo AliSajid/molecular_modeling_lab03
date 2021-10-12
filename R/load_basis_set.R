@@ -7,7 +7,7 @@
 #' @param basis The basis set to use
 #' @param element The name or the symbol of the element
 #'
-#' @importFrom httr GET status_code
+#' @importFrom httr GET status_code content
 #' @importFrom stringr str_to_lower str_glue
 #' @importFrom jsonlite fromJSON
 #' @importFrom purrr map pluck

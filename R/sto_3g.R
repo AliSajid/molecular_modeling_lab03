@@ -4,7 +4,7 @@
 #'
 #' #' Function to generate Slater-Type Orbital Functions
 #'
-#'This function takes in the name of an element and a basiss et and generates a function that can return the energy at that radius.
+#'This function takes in the name of an element and a basis et and generates a function that can return the energy at that radius.
 #
 #'
 #' @param basis The basis set
