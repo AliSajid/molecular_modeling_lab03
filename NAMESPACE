@@ -2,7 +2,11 @@
 
 export(gto_generator)
 export(load_basis_set)
+export(sto_2g_generator)
 export(sto_3g_generator)
+export(sto_4g_generator)
+export(sto_5g_generator)
+export(sto_6g_generator)
 export(sto_generator)
 importFrom(dplyr,mutate)
 importFrom(httr,GET)
